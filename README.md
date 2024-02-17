@@ -7,7 +7,7 @@ Es un simple CRUD que emplea una API en el servidor PHP lanzado en docker.
 
 ## Instalación
 
-1. Ejecute `npm install` para isntalar las librerias.
+1. Ejecute `npm install` para instalar las librerias.
 
 2. Ejecute `docker-compose up` para levantar el servidor.
 
