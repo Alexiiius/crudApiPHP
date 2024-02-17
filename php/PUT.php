@@ -1,5 +1,7 @@
 <?php
 
+include_once 'CORS.php';
+
 //No se puede acceder a este archivo sin PUT
 if ($_SERVER["REQUEST_METHOD"] != "PUT") {
     http_response_code(400);
@@ -28,7 +30,7 @@ if ($contentType === 'application/json') {
     die();
 }
 
-$$id = $data["id"] ?? "";
+$id = $data["id"] ?? "";
 $nombre = $data["nombre"] ?? "";
 $apellido = $data["apellido"] ?? "";
 $telefono = $data["telefono"] ?? "";

@@ -1,5 +1,7 @@
 <?php
 
+include_once 'CORS.php';
+
 //No se puede acceder a este archivo sin GET
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     http_response_code(400);

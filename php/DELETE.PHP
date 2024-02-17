@@ -1,5 +1,7 @@
 <?php
 
+include_once 'CORS.php';
+
 //No se puede acceder a este archivo sin DELETE
 if ($_SERVER["REQUEST_METHOD"] != "DELETE") {
     http_response_code(400);
@@ -15,24 +17,12 @@ try {
     die();
 }
 
-//Reconocer el tipo de contenido y desglosarlo
-$contentType = $_SERVER["CONTENT_TYPE"] ?? '';
+// Obtener el id de la URL
+$id = trim($_SERVER['PATH_INFO'], '/');
 
-if ($contentType === 'application/json') {
-    $data = json_decode(file_get_contents('php://input'), true);
-} elseif ($contentType === 'application/x-www-form-urlencoded' || $contentType === 'multipart/form-data') {
-    $data = $_POST;
-} else {
+if ( $id == "" || !is_numeric($id) ) {
     http_response_code(400);
-    echo json_encode(['message' => 'La peticion debe ser JSON, urlencoded o multipart']);
-    die();
-}
-
-$id = $data["id"] ?? "";
-
-if ($id == "") {
-    http_response_code(400);
-    echo json_encode(['message' => 'Falta el id por enviar']);
+    echo json_encode(['message' => 'Peticion invalida']);
     die();
 }
 
